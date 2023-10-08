@@ -35,6 +35,13 @@ class Contact extends HBox {
         this.getChildren().add(contactName); // add textlabel to task
 
     }
+    
+    public void viewContact() {
+    }
+
+    public void delContact() {
+    }
+
 
     public TextField getContactName() {
         return this.contactName;
@@ -67,12 +74,6 @@ class ContactList extends VBox {
         this.setSpacing(5); // sets spacing between tasks
         this.setPrefSize(500, 560);
         this.setStyle("-fx-background-color: #F0F8FF;");
-    }
-
-    public void viewContact() {
-    }
-
-    public void delContact() {
     }
 
     public void exportContact() {
