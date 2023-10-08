@@ -14,6 +14,8 @@ import javafx.scene.text.*;
 import java.io.*;
 import java.util.*;
 
+import javax.swing.JButton;
+
 class Contact extends HBox {
 
     private Label index;
@@ -122,6 +124,32 @@ class AppFrame extends BorderPane {
     private Header header;
     private Footer footer;
     private ScrollPane scroll;
+
+    private JButton addButton;
+    private Button delButton;
+    private Button viewButton;
+    private Button exportButton;
+
+    public void addListeners() {
+
+        // Add button functionality
+        addButton.setOnAction(e -> {
+            // Create a new task
+            Task task = new Task();
+            // Add task to tasklist
+            taskList.getChildren().add(task);
+            // Add doneButtonToggle to the Done button
+            Button doneButton = task.getDoneButton();
+            doneButton.setOnAction(e1 -> {
+                // Call toggleDone on click
+                task.toggleDone();
+            });
+
+            // Update task indices
+            taskList.updateTaskIndices();
+        });
+
+    }
 }
 
 public class Main extends Application {
