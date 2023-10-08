@@ -48,7 +48,7 @@ class Contact extends HBox {
         contactName.setPadding(new Insets(10, 0, 10, 0)); // adds some padding to the text field
         this.getChildren().add(contactName); // add textlabel to task
 
-        delButton = new Button("Delete"); // creates a button for marking the task as done
+        delButton = new Button("Delete"); 
         delButton.setPrefSize(100, 20);
         delButton.setPrefHeight(Double.MAX_VALUE);
         delButton.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // sets style of button
@@ -129,14 +129,13 @@ class Footer extends HBox {
         exportButton.setStyle(defaultButtonStyle); // styling the button
 
         this.getChildren().add(addButton); // adding buttons to footer
-        this.getChildren().add(exportButton);
+        this.getChildren().add(sortButton);
         this.setAlignment(Pos.CENTER); // aligning the buttons to center
     }
 
     public Button getAddButton() {
         return this.addButton;
     }
-
     public Button getExportButton() {
         return this.exportButton;
     }
@@ -197,7 +196,7 @@ class AppFrame extends BorderPane {
                 // Call toggleDone on click
                 contactList.remove(contact.getContactName().getText());
             });
-
+   
         });
 
     }
