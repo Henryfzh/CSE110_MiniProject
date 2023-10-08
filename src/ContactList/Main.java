@@ -22,6 +22,24 @@ class Contact extends HBox {
     private TextField contactPhone;
     private Image contactImage;
     private Button uploadButton;
+
+    public TextField getContactName(){
+        return this.contactName;
+    }
+
+    public TextField getContactEmail(){
+        return this.contactEmail;
+    }
+
+     public TextField getContactPhone(){
+        return this.contactPhone;
+    }
+
+    public Button getUploadButton(){
+        return this.uploadButton;
+    }
+
+
 }
 
 class Footer extends HBox {
@@ -29,6 +47,7 @@ class Footer extends HBox {
     private Button addButton;
     private Button delButton;
     private Button viewButton;
+    private Button exportButton;
 
     Footer() {
         this.setPrefSize(500, 60);
@@ -56,7 +75,7 @@ class ContactList extends VBox {
     public void delContact() {
     }
 
-    public void uploadContact() {
+    public void exportContact() {
     }
 }
 
