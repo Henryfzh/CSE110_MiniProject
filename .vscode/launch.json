@@ -12,6 +12,6 @@
             "vmArgs": "--module-path 'Y:/Onedrive/Study/CSE_110/javafx-sdk-21/lib' --add-modules javafx.controls,javafx.fxml"
         }
     ]
-    //C:/Users/Kaijia/OneDrive/桌面/CSE110/avafx-sdk-21
+    //C:/Users/Kaijia/OneDrive/桌面/CSE110/avafx-sdk-21/lib
     //Y:/Onedrive/Study/CSE_110/javafx-sdk-21/lib
 }
