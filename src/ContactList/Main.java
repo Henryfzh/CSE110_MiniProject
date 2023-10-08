@@ -66,7 +66,7 @@ class Header extends HBox {
         this.setPrefSize(500, 60); // Size of the header
         this.setStyle("-fx-background-color: #F0F8FF;");
 
-        Text titleText = new Text("To Do List"); // Text of the Header
+        Text titleText = new Text("Contact List"); // Text of the Header
         titleText.setStyle("-fx-font-weight: bold; -fx-font-size: 20;");
         this.getChildren().add(titleText);
         this.setAlignment(Pos.CENTER); // Align the text to the Center
@@ -89,7 +89,7 @@ public class Main extends Application {
         AppFrame root = new AppFrame();
 
         // Set the title of the app
-        primaryStage.setTitle("To Do List");
+        primaryStage.setTitle("Contact List");
         // Create scene of mentioned size with the border pane
         primaryStage.setScene(new Scene(root, 500, 600));
 
