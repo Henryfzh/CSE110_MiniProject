@@ -16,7 +16,6 @@ import java.util.*;
 
 class Contact extends HBox {
 
-    private Label index;
     private TextField contactName;
     private TextField contactEmail;
     private TextField contactPhone;
@@ -60,9 +59,6 @@ class ContactList extends VBox {
         this.setStyle("-fx-background-color: #F0F8FF;");
     }
 
-    public void addContact() {
-    }
-
     public void viewContact() {
     }
 
@@ -91,8 +87,6 @@ class ContactList extends VBox {
 class Footer extends HBox {
 
     private Button addButton;
-    private Button delButton;
-    private Button viewButton;
     private Button exportButton;
 
     Footer() {
@@ -102,6 +96,23 @@ class Footer extends HBox {
 
         // set a default style for buttons - background color, font size, italics
         String defaultButtonStyle = "-fx-font-style: italic; -fx-background-color: #FFFFFF;  -fx-font-weight: bold; -fx-font: 11 arial;";
+
+        addButton = new Button("New Contact"); // text displayed on add button
+        addButton.setStyle(defaultButtonStyle); // styling the button
+
+        exportButton = new Button("Export Contact"); // text displayed on add button
+        exportButton.setStyle(defaultButtonStyle); // styling the button
+
+        this.getChildren().addAll(addButton, exportButton); // adding buttons to footer
+        this.setAlignment(Pos.CENTER); // aligning the buttons to center
+    }
+
+    public Button getAddButton(){
+        return this.addButton;
+    }
+
+    public Button exportButton(){
+        return this.exportButton;
     }
 }
 
@@ -121,7 +132,30 @@ class Header extends HBox {
 class AppFrame extends BorderPane {
     private Header header;
     private Footer footer;
-    private ScrollPane scroll;
+    private ContactList contactList;
+    private ScrollPane scroller;
+
+    private Button addButton;
+    private Button exportButton;
+    
+    AppFrame(){
+        header = new Header();
+        footer = new Footer();
+        contactList = new ContactList();
+        scroller = new ScrollPane();
+        scroller.setContent(contactList);
+        scroller.setFitToWidth(true);
+
+        this.setTop(header);
+        this.setCenter(scroller);
+        this.setBottom(footer);
+
+        addButton = footer.getAddButton();
+        exportButton = footer.exportButton();
+
+        addListeners();
+    }
+
 }
 
 public class Main extends Application {
