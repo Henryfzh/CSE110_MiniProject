@@ -37,11 +37,8 @@ class Contact extends HBox {
     }
     
     public void viewContact() {
-    }
 
-    public void delContact() {
     }
-
 
     public TextField getContactName() {
         return this.contactName;
@@ -92,6 +89,10 @@ class ContactList extends VBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void remove(String contactName){
+        this.getChildren().removeIf(contact -> contact instanceof Contact && ((Contact) contact).getContactName().equals(contactName));
     }
 }
 
