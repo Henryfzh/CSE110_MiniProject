@@ -23,6 +23,8 @@ class Contact extends HBox {
     private TextField contactPhone;
     private Image contactImage;
     private Button uploadButton;
+    private Button viewButton;
+    private Button  delButton;
 
     Contact() {
         this.setPrefSize(500, 20); // sets size of task
@@ -50,6 +52,14 @@ class Contact extends HBox {
 
     public Button getUploadButton() {
         return this.uploadButton;
+    }
+
+    public Button getViewButton(){
+        return this.viewButton;
+    }
+
+    public Button getDelButton(){
+        return this.delButton;
     }
 
 }
