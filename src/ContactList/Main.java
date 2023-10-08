@@ -72,10 +72,6 @@ class Contact extends HBox {
         return this.uploadButton;
     }
 
-    public Button getViewButton() {
-        return this.viewButton;
-    }
-
     public Button getDelButton() {
         return this.delButton;
     }
@@ -145,7 +141,7 @@ class Footer extends HBox {
         return this.exportButton;
     }
 
-    public Button getSortButton(){
+    public Button getSortButton() {
         return this.sortButton;
     }
 }
@@ -185,8 +181,7 @@ class AppFrame extends BorderPane {
         this.setBottom(footer);
 
         addButton = footer.getAddButton();
-        exportButton = footer.exportButton();
-
+        exportButton = footer.getExportButton();
         // addListeners();
     }
 
