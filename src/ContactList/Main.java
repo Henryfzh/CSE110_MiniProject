@@ -18,7 +18,6 @@ import javax.swing.JButton;
 
 class Contact extends HBox {
 
-    private Label index;
     private TextField contactName;
     private TextField contactEmail;
     private TextField contactPhone;
@@ -62,9 +61,6 @@ class ContactList extends VBox {
         this.setStyle("-fx-background-color: #F0F8FF;");
     }
 
-    public void addContact() {
-    }
-
     public void viewContact() {
     }
 
@@ -93,8 +89,6 @@ class ContactList extends VBox {
 class Footer extends HBox {
 
     private Button addButton;
-    private Button delButton;
-    private Button viewButton;
     private Button exportButton;
 
     Footer() {
@@ -104,6 +98,23 @@ class Footer extends HBox {
 
         // set a default style for buttons - background color, font size, italics
         String defaultButtonStyle = "-fx-font-style: italic; -fx-background-color: #FFFFFF;  -fx-font-weight: bold; -fx-font: 11 arial;";
+
+        addButton = new Button("New Contact"); // text displayed on add button
+        addButton.setStyle(defaultButtonStyle); // styling the button
+
+        exportButton = new Button("Export Contact"); // text displayed on add button
+        exportButton.setStyle(defaultButtonStyle); // styling the button
+
+        this.getChildren().addAll(addButton, exportButton); // adding buttons to footer
+        this.setAlignment(Pos.CENTER); // aligning the buttons to center
+    }
+
+    public Button getAddButton() {
+        return this.addButton;
+    }
+
+    public Button exportButton() {
+        return this.exportButton;
     }
 }
 
@@ -124,32 +135,6 @@ class AppFrame extends BorderPane {
     private Header header;
     private Footer footer;
     private ScrollPane scroll;
-
-    private JButton addButton;
-    private Button delButton;
-    private Button viewButton;
-    private Button exportButton;
-
-    public void addListeners() {
-
-        // Add button functionality
-        addButton.setOnAction(e -> {
-            // Create a new task
-            Task task = new Task();
-            // Add task to tasklist
-            taskList.getChildren().add(task);
-            // Add doneButtonToggle to the Done button
-            Button doneButton = task.getDoneButton();
-            doneButton.setOnAction(e1 -> {
-                // Call toggleDone on click
-                task.toggleDone();
-            });
-
-            // Update task indices
-            taskList.updateTaskIndices();
-        });
-
-    }
 }
 
 public class Main extends Application {
