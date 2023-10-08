@@ -27,7 +27,6 @@ class Contact extends HBox {
     private TextField contactPhone;
     private Image contactImage;
     private Button uploadButton;
-    private Button viewButton;
     private Button delButton;
     private Label index;
 
@@ -55,10 +54,6 @@ class Contact extends HBox {
         delButton.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // sets style of button
 
         this.getChildren().add(delButton);
-    }
-
-    public void viewContact() {
-
     }
 
     public TextField getContactName() {
@@ -122,6 +117,7 @@ class Footer extends HBox {
 
     private Button addButton;
     private Button exportButton;
+    private Button sortButton;
 
     Footer() {
         this.setPrefSize(500, 60);
@@ -145,8 +141,12 @@ class Footer extends HBox {
         return this.addButton;
     }
 
-    public Button exportButton() {
+    public Button getExportButton() {
         return this.exportButton;
+    }
+
+    public Button getSortButton(){
+        return this.sortButton;
     }
 }
 
