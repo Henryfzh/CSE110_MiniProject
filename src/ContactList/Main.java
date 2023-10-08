@@ -1,4 +1,4 @@
-package ContactList;
+package src.ContactList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -97,8 +97,9 @@ class ContactList extends VBox {
         }
     }
 
-    public void remove(String contactName){
-        this.getChildren().removeIf(contact -> contact instanceof Contact && ((Contact) contact).getContactName().equals(contactName));
+    public void remove(String contactName) {
+        this.getChildren().removeIf(
+                contact -> contact instanceof Contact && ((Contact) contact).getContactName().equals(contactName));
     }
 }
 
