@@ -14,8 +14,6 @@ import javafx.scene.text.*;
 import java.io.*;
 import java.util.*;
 
-import javax.swing.JButton;
-
 class Contact extends HBox {
 
     private TextField contactName;
@@ -120,11 +118,11 @@ class Footer extends HBox {
         this.setAlignment(Pos.CENTER); // aligning the buttons to center
     }
 
-    public Button getAddButton() {
+    public Button getAddButton(){
         return this.addButton;
     }
 
-    public Button exportButton() {
+    public Button exportButton(){
         return this.exportButton;
     }
 }
@@ -145,7 +143,30 @@ class Header extends HBox {
 class AppFrame extends BorderPane {
     private Header header;
     private Footer footer;
-    private ScrollPane scroll;
+    private ContactList contactList;
+    private ScrollPane scroller;
+
+    private Button addButton;
+    private Button exportButton;
+    
+    AppFrame(){
+        header = new Header();
+        footer = new Footer();
+        contactList = new ContactList();
+        scroller = new ScrollPane();
+        scroller.setContent(contactList);
+        scroller.setFitToWidth(true);
+
+        this.setTop(header);
+        this.setCenter(scroller);
+        this.setBottom(footer);
+
+        addButton = footer.getAddButton();
+        exportButton = footer.exportButton();
+
+        addListeners();
+    }
+
 }
 
 public class Main extends Application {
