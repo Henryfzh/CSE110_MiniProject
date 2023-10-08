@@ -4,6 +4,8 @@ import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -16,13 +18,16 @@ class Contact extends HBox {
 
     private Label index;
     private TextField contactName;
+    private TextField contactEmail;
+    private TextField contactPhone;
+    private Image contactImage;
 }
 
 class Footer extends HBox {
 
     private Button addButton;
     private Button delButton;
-    private Button view;
+    private Button viewButton;
 
     Footer() {
         this.setPrefSize(500, 60);
