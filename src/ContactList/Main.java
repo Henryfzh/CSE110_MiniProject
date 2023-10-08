@@ -29,17 +29,32 @@ class Contact extends HBox {
     private Button uploadButton;
     private Button viewButton;
     private Button delButton;
+    private Label index;
 
     Contact() {
         this.setPrefSize(500, 20); // sets size of task
         this.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0; -fx-font-weight: bold;"); // sets background
                                                                                                      // color of task
+        index = new Label();
+        index.setText(""); // create index label
+        index.setPrefSize(40, 20); // set size of Index label
+        index.setTextAlignment(TextAlignment.CENTER); // Set alignment of index label
+        index.setPadding(new Insets(10, 0, 10, 0)); // adds some padding to the task
+        this.getChildren().add(index); // add index label to task
+
         contactName = new TextField(); // create task name text field
         contactName.setPrefSize(380, 20); // set size of text field
         contactName.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // set background color of texfield
+        index.setTextAlignment(TextAlignment.LEFT); // set alignment of text field
         contactName.setPadding(new Insets(10, 0, 10, 0)); // adds some padding to the text field
         this.getChildren().add(contactName); // add textlabel to task
 
+        delButton = new Button("Done"); // creates a button for marking the task as done
+        delButton.setPrefSize(100, 20);
+        delButton.setPrefHeight(Double.MAX_VALUE);
+        delButton.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // sets style of button
+
+        this.getChildren().add(delButton);
     }
 
     public void viewContact() {
@@ -172,27 +187,20 @@ class AppFrame extends BorderPane {
         addButton = footer.getAddButton();
         exportButton = footer.exportButton();
 
-        //addListeners();
+        // addListeners();
     }
 
     public void addListeners() {
-
-        // Add button functionality
         addButton.setOnAction(e -> {
             // Create a new task
             Contact contact = new Contact();
-            JFrame newWindow = new JFrame("New Window");
-            newWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            newWindow.setSize(300, 200);
-
-            newWindow.setVisible(true);
             // Add task to tasklist
             contactList.getChildren().add(contact);
             // Add doneButtonToggle to the Done button
-            Button viewButton = contact.getViewButton();
-            viewButton.setOnAction(e1 -> {
+            Button delButton = contact.getDelButton();
+            delButton.setOnAction(e1 -> {
                 // Call toggleDone on click
-
+                contactList.remove(contact.getContactName().getText());
             });
 
         });
