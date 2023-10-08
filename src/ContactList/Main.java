@@ -27,7 +27,6 @@ class Contact extends HBox {
     private TextField contactPhone;
     private Image contactImage;
     private Button uploadButton;
-    private Button viewButton;
     private Button delButton;
 
     Contact() {
@@ -39,10 +38,6 @@ class Contact extends HBox {
         contactName.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // set background color of texfield
         contactName.setPadding(new Insets(10, 0, 10, 0)); // adds some padding to the text field
         this.getChildren().add(contactName); // add textlabel to task
-
-    }
-
-    public void viewContact() {
 
     }
 
@@ -106,6 +101,7 @@ class Footer extends HBox {
 
     private Button addButton;
     private Button exportButton;
+    private Button sortButton;
 
     Footer() {
         this.setPrefSize(500, 60);
@@ -129,8 +125,12 @@ class Footer extends HBox {
         return this.addButton;
     }
 
-    public Button exportButton() {
+    public Button getExportButton() {
         return this.exportButton;
+    }
+
+    public Button getSortButton(){
+        return this.sortButton;
     }
 }
 
