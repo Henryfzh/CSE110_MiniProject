@@ -1,3 +1,5 @@
+package ContactList;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,6 +16,10 @@ import javafx.scene.text.*;
 import java.io.*;
 import java.util.*;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 class Contact extends HBox {
 
     private TextField contactName;
@@ -22,7 +28,7 @@ class Contact extends HBox {
     private Image contactImage;
     private Button uploadButton;
     private Button viewButton;
-    private Button  delButton;
+    private Button delButton;
 
     Contact() {
         this.setPrefSize(500, 20); // sets size of task
@@ -35,13 +41,12 @@ class Contact extends HBox {
         this.getChildren().add(contactName); // add textlabel to task
 
     }
-    
+
     public void viewContact() {
     }
 
     public void delContact() {
     }
-
 
     public TextField getContactName() {
         return this.contactName;
@@ -59,11 +64,11 @@ class Contact extends HBox {
         return this.uploadButton;
     }
 
-    public Button getViewButton(){
+    public Button getViewButton() {
         return this.viewButton;
     }
 
-    public Button getDelButton(){
+    public Button getDelButton() {
         return this.delButton;
     }
 
@@ -109,20 +114,20 @@ class Footer extends HBox {
         String defaultButtonStyle = "-fx-font-style: italic; -fx-background-color: #FFFFFF;  -fx-font-weight: bold; -fx-font: 11 arial;";
 
         addButton = new Button("New Contact"); // text displayed on add button
-        addButton.setStyle(defaultButtonStyle); // styling the button
 
         exportButton = new Button("Export Contact"); // text displayed on add button
         exportButton.setStyle(defaultButtonStyle); // styling the button
 
-        this.getChildren().addAll(addButton, exportButton); // adding buttons to footer
+        this.getChildren().add(addButton); // adding buttons to footer
+        this.getChildren().add(exportButton);
         this.setAlignment(Pos.CENTER); // aligning the buttons to center
     }
 
-    public Button getAddButton(){
+    public Button getAddButton() {
         return this.addButton;
     }
 
-    public Button exportButton(){
+    public Button exportButton() {
         return this.exportButton;
     }
 }
@@ -148,8 +153,8 @@ class AppFrame extends BorderPane {
 
     private Button addButton;
     private Button exportButton;
-    
-    AppFrame(){
+
+    AppFrame() {
         header = new Header();
         footer = new Footer();
         contactList = new ContactList();
@@ -167,6 +172,29 @@ class AppFrame extends BorderPane {
         addListeners();
     }
 
+    public void addListeners() {
+
+        // Add button functionality
+        addButton.setOnAction(e -> {
+            // Create a new task
+            Contact contact = new Contact();
+            JFrame newWindow = new JFrame("New Window");
+            newWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            newWindow.setSize(300, 200);
+
+            newWindow.setVisible(true);
+            // Add task to tasklist
+            contactList.getChildren().add(contact);
+            // Add doneButtonToggle to the Done button
+            Button viewButton = contact.getViewButton();
+            viewButton.setOnAction(e1 -> {
+                // Call toggleDone on click
+
+            });
+
+        });
+
+    }
 }
 
 public class Main extends Application {
