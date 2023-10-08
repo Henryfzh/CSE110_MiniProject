@@ -23,40 +23,34 @@ class Contact extends HBox {
     private Image contactImage;
     private Button uploadButton;
 
-    public TextField getContactName(){
+    Contact() {
+        this.setPrefSize(500, 20); // sets size of task
+        this.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0; -fx-font-weight: bold;"); // sets background
+                                                                                                     // color of task
+        contactName = new TextField(); // create task name text field
+        contactName.setPrefSize(380, 20); // set size of text field
+        contactName.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // set background color of texfield
+        contactName.setPadding(new Insets(10, 0, 10, 0)); // adds some padding to the text field
+        this.getChildren().add(contactName); // add textlabel to task
+
+    }
+
+    public TextField getContactName() {
         return this.contactName;
     }
 
-    public TextField getContactEmail(){
+    public TextField getContactEmail() {
         return this.contactEmail;
     }
 
-     public TextField getContactPhone(){
+    public TextField getContactPhone() {
         return this.contactPhone;
     }
 
-    public Button getUploadButton(){
+    public Button getUploadButton() {
         return this.uploadButton;
     }
 
-
-}
-
-class Footer extends HBox {
-
-    private Button addButton;
-    private Button delButton;
-    private Button viewButton;
-    private Button exportButton;
-
-    Footer() {
-        this.setPrefSize(500, 60);
-        this.setStyle("-fx-background-color: #F0F8FF;");
-        this.setSpacing(15);
-
-        // set a default style for buttons - background color, font size, italics
-        String defaultButtonStyle = "-fx-font-style: italic; -fx-background-color: #FFFFFF;  -fx-font-weight: bold; -fx-font: 11 arial;";
-    }
 }
 
 class ContactList extends VBox {
@@ -76,6 +70,38 @@ class ContactList extends VBox {
     }
 
     public void exportContact() {
+        String fileName = "contact.csv";
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
+            String line;
+            for (int i = 0; i < this.getChildren().size(); i++) {
+                if (this.getChildren().get(i) instanceof Contact) {
+                    line = ((Contact) this.getChildren().get(i)).getContactName().getText();
+                    bufferedWriter.write(line.toString());
+                    bufferedWriter.newLine();
+                }
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class Footer extends HBox {
+
+    private Button addButton;
+    private Button delButton;
+    private Button viewButton;
+    private Button exportButton;
+
+    Footer() {
+        this.setPrefSize(500, 60);
+        this.setStyle("-fx-background-color: #F0F8FF;");
+        this.setSpacing(15);
+
+        // set a default style for buttons - background color, font size, italics
+        String defaultButtonStyle = "-fx-font-style: italic; -fx-background-color: #FFFFFF;  -fx-font-weight: bold; -fx-font: 11 arial;";
     }
 }
 
