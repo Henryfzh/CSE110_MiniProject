@@ -21,6 +21,7 @@ class Contact extends HBox {
     private TextField contactEmail;
     private TextField contactPhone;
     private Image contactImage;
+    private Button uploadButton;
 }
 
 class Footer extends HBox {
@@ -53,6 +54,9 @@ class ContactList extends VBox {
     }
 
     public void delContact() {
+    }
+
+    public void uploadContact() {
     }
 }
 
