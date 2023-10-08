@@ -12,7 +12,7 @@ import javafx.scene.text.*;
 import java.io.*;
 import java.util.*;
 
-class Task extends HBox {
+class Contact extends HBox {
 
     private Label index;
     private TextField contactName;
@@ -31,6 +31,23 @@ class Footer extends HBox {
 
         // set a default style for buttons - background color, font size, italics
         String defaultButtonStyle = "-fx-font-style: italic; -fx-background-color: #FFFFFF;  -fx-font-weight: bold; -fx-font: 11 arial;";
+    }
+}
+
+class ContactList extends VBox {
+    ContactList() {
+        this.setSpacing(5); // sets spacing between tasks
+        this.setPrefSize(500, 560);
+        this.setStyle("-fx-background-color: #F0F8FF;");
+    }
+
+    public void addContact() {
+    }
+
+    public void viewContact() {
+    }
+
+    public void delContact() {
     }
 }
 
