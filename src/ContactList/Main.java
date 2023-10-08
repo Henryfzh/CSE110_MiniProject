@@ -16,9 +16,6 @@ import javafx.scene.text.*;
 import java.io.*;
 import java.util.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 class Contact extends HBox {
 
@@ -128,7 +125,11 @@ class Footer extends HBox {
         exportButton = new Button("Export Contact"); // text displayed on add button
         exportButton.setStyle(defaultButtonStyle); // styling the button
 
+        sortButton = new Button("Sort Contact"); // text displayed on add button
+        sortButton.setStyle(defaultButtonStyle); // styling the button
+
         this.getChildren().add(addButton); // adding buttons to footer
+        this.getChildren().add(exportButton);
         this.getChildren().add(sortButton);
         this.setAlignment(Pos.CENTER); // aligning the buttons to center
     }
@@ -208,7 +209,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         // Setting the Layout of the Window- Should contain a Header, Footer and the
-        // TaskList
+        // ContactList
         AppFrame root = new AppFrame();
 
         // Set the title of the app
