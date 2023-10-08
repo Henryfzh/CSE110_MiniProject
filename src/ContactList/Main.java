@@ -1,4 +1,4 @@
-package ContactList;
+package src.ContactList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
