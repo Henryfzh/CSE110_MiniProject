@@ -8,10 +8,18 @@
             "type": "java",
             "name": "Contact List",
             "request": "launch",
+<<<<<<< Updated upstream
             "mainClass": "src.ContactList.Main",
             "vmArgs": "--module-path 'C:/Users/Kaijia/OneDrive/桌面/CSE110/javafx-sdk-21/lib' --add-modules javafx.controls,javafx.fxml"
         }
     ]
     //C:/Users/Kaijia/OneDrive/桌面/CSE110/javafx-sdk-21/lib
+=======
+            "mainClass": "ContactList.Main",
+            "vmArgs": "--module-path 'C:/Users/Kaijia/OneDrive/桌面/CSE110/avafx-sdk-21/lib' --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+    //C:/Users/Kaijia/OneDrive/桌面/CSE110/avafx-sdk-21/lib
+>>>>>>> Stashed changes
     //Y:/Onedrive/Study/CSE_110/javafx-sdk-21/lib
 }

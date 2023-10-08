@@ -171,7 +171,7 @@ class AppFrame extends BorderPane {
         addButton = footer.getAddButton();
         exportButton = footer.exportButton();
 
-        addListeners();
+        //addListeners();
     }
 
     public void addListeners() {
