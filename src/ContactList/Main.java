@@ -16,7 +16,6 @@ import javafx.scene.text.*;
 import java.io.*;
 import java.util.*;
 
-
 class Contact extends HBox {
 
     private TextField contactName;
@@ -28,9 +27,17 @@ class Contact extends HBox {
     private Label index;
 
     Contact() {
-        this.setPrefSize(500, 20); // sets size of task
+        this.setPrefSize(500, 50); // sets size of task
         this.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0; -fx-font-weight: bold;"); // sets background
                                                                                                      // color of task
+
+        uploadButton = new Button("Upload \n Image"); // creates a button for marking the task as done
+        uploadButton.setPrefSize(100, 40);
+        uploadButton.setAlignment(Pos.CENTER);
+        uploadButton.setPrefHeight(Double.MAX_VALUE);
+        uploadButton.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // sets style of button
+        this.getChildren().add(uploadButton);
+
         index = new Label();
         index.setText(""); // create index label
         index.setPrefSize(40, 20); // set size of Index label
@@ -39,18 +46,19 @@ class Contact extends HBox {
         this.getChildren().add(index); // add index label to task
 
         contactName = new TextField(); // create task name text field
-        contactName.setPrefSize(380, 20); // set size of text field
+        contactName.setPrefSize(380, 50); // set size of text field
         contactName.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // set background color of texfield
         index.setTextAlignment(TextAlignment.LEFT); // set alignment of text field
         contactName.setPadding(new Insets(10, 0, 10, 0)); // adds some padding to the text field
         this.getChildren().add(contactName); // add textlabel to task
 
-        delButton = new Button("Delete"); 
+        delButton = new Button("Delete");
         delButton.setPrefSize(100, 20);
         delButton.setPrefHeight(Double.MAX_VALUE);
         delButton.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // sets style of button
 
         this.getChildren().add(delButton);
+
     }
 
     public TextField getContactName() {
@@ -137,6 +145,7 @@ class Footer extends HBox {
     public Button getAddButton() {
         return this.addButton;
     }
+
     public Button getExportButton() {
         return this.exportButton;
     }
@@ -197,7 +206,7 @@ class AppFrame extends BorderPane {
                 // Call toggleDone on click
                 contactList.remove(contact.getContactName().getText());
             });
-   
+
         });
 
     }
