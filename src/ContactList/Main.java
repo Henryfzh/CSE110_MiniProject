@@ -2,7 +2,9 @@ package src.ContactList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -21,10 +23,13 @@ class Contact extends HBox {
     private TextField contactName;
     private TextField contactEmail;
     private TextField contactPhone;
-    private Image contactImage;
     private Button uploadButton;
     private Button delButton;
     private Label index;
+    // To display images
+    private ImageView imageView;
+    // To open a file dialog for selecting images
+    private FileChooser fileChooser;
 
     Contact() {
         this.setPrefSize(500, 50); // sets size of task
@@ -79,6 +84,28 @@ class Contact extends HBox {
 
     public Button getDelButton() {
         return this.delButton;
+    }
+
+    public void uploadImage(Stage primaryStage) {
+        imageView = new ImageView();
+        fileChooser = new FileChooser();
+        // Select which extensions are allowed
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+        if (selectedFile != null) {
+            Image image = new Image(selectedFile.toURI().toString());
+
+            /*
+             * Set the selected image in imageView i.e. display the image.
+             * Hint: To implement this, you can use the setImage() method of ImageView and
+             * pass the selected image as an argument.
+             */
+            imageView.setImage(image);
+            // Resize the window to fit the image
+            primaryStage.setWidth(image.getWidth() + 100);
+            primaryStage.setHeight(image.getHeight() + 100);
+        }
     }
 
 }
@@ -196,17 +223,8 @@ class AppFrame extends BorderPane {
 
     public void addListeners() {
         addButton.setOnAction(e -> {
-            // Create a new task
             Contact contact = new Contact();
-            // Add task to tasklist
             contactList.getChildren().add(contact);
-            // Add doneButtonToggle to the Done button
-            Button delButton = contact.getDelButton();
-            delButton.setOnAction(e1 -> {
-                // Call toggleDone on click
-                contactList.remove(contact.getContactName().getText());
-            });
-
         });
 
     }
@@ -216,7 +234,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        private Button uploadButton;
         // Setting the Layout of the Window- Should contain a Header, Footer and the
         // ContactList
         AppFrame root = new AppFrame();
@@ -225,11 +243,12 @@ public class Main extends Application {
         primaryStage.setTitle("Contact List");
         // Create scene of mentioned size with the border pane
         primaryStage.setScene(new Scene(root, 500, 600));
-
+        uploadButton.setOnAction(e -> uploadImage(primaryStage));
         // Make window non-resizable
         primaryStage.setResizable(false);
         // Show the app
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {
