@@ -26,10 +26,8 @@ class Contact extends HBox {
     private Button uploadButton;
     private Button delButton;
     private Label index;
-    // To display images
-    private ImageView imageView;
-    // To open a file dialog for selecting images
-    private FileChooser fileChooser;
+    ImageView imageView;
+    FileChooser fileChooser;
 
     Contact() {
         this.setPrefSize(500, 50); // sets size of task
@@ -107,7 +105,6 @@ class Contact extends HBox {
             primaryStage.setHeight(image.getHeight() + 100);
         }
     }
-
 }
 
 class ContactList extends VBox {
@@ -197,12 +194,13 @@ class Header extends HBox {
 
 class AppFrame extends BorderPane {
     private Header header;
-    private Footer footer;
+    public Footer footer;
     private ContactList contactList;
     private ScrollPane scroller;
 
     private Button addButton;
     private Button exportButton;
+    private Button uploadButton;
 
     AppFrame() {
         header = new Header();
@@ -231,10 +229,16 @@ class AppFrame extends BorderPane {
 }
 
 public class Main extends Application {
+    // To display images
+    private ImageView imageView = new ImageView();
+
+    // To open a file dialog for selecting images
+    private FileChooser fileChooser = new FileChooser();
+    Button uploadButton;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        private Button uploadButton;
+
         // Setting the Layout of the Window- Should contain a Header, Footer and the
         // ContactList
         AppFrame root = new AppFrame();
@@ -243,7 +247,6 @@ public class Main extends Application {
         primaryStage.setTitle("Contact List");
         // Create scene of mentioned size with the border pane
         primaryStage.setScene(new Scene(root, 500, 600));
-        uploadButton.setOnAction(e -> uploadImage(primaryStage));
         // Make window non-resizable
         primaryStage.setResizable(false);
         // Show the app
