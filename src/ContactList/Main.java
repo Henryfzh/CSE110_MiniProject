@@ -42,11 +42,11 @@ class Contact extends HBox {
         this.getChildren().add(uploadButton);
 
         imageView = new ImageView();
-        imageView.setFitHeight(60);
-        imageView.setFitWidth(40);
         VBox vbox = new VBox(imageView);
         vbox.setAlignment(Pos.CENTER);
-        vbox.setPrefSize(40, 40);
+        vbox.setPrefSize(80, 60);
+        imageView.setFitHeight(vbox.getPrefHeight());
+        imageView.setFitWidth(vbox.getPrefWidth());
         this.getChildren().add(vbox);
 
         index = new Label();
@@ -122,8 +122,6 @@ class Contact extends HBox {
 
             /*
              * Set the selected image in imageView i.e. display the image.
-             * Hint: To implement this, you can use the setImage() method of ImageView and
-             * pass the selected image as an argument.
              */
             imageView.setImage(image);
         }
