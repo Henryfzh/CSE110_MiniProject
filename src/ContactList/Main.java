@@ -8,9 +8,13 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.geometry.Insets;
@@ -26,8 +30,8 @@ class Contact extends HBox {
     private Button uploadButton;
     private Button delButton;
     private Label index;
-    ImageView imageView;
     FileChooser fileChooser;
+    Circle cir2;
 
     Contact() {
         this.setPrefSize(500, 50); // sets size of task
@@ -41,12 +45,11 @@ class Contact extends HBox {
         uploadButton.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // sets style of button
         this.getChildren().add(uploadButton);
 
-        imageView = new ImageView();
-        VBox vbox = new VBox(imageView);
+        cir2 = new Circle(60, 60, 30);
+        cir2.setFill(Color.TRANSPARENT);
+        VBox vbox = new VBox(cir2);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPrefSize(80, 60);
-        imageView.setFitHeight(vbox.getPrefHeight());
-        imageView.setFitWidth(vbox.getPrefWidth());
         this.getChildren().add(vbox);
 
         index = new Label();
@@ -123,7 +126,9 @@ class Contact extends HBox {
             /*
              * Set the selected image in imageView i.e. display the image.
              */
-            imageView.setImage(image);
+            cir2.setStroke(Color.WHITE);
+            cir2.setFill(new ImagePattern(image));
+            cir2.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITE));
         }
     }
 }
