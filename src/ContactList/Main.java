@@ -142,15 +142,24 @@ class ContactList extends VBox {
 
     public void exportContact() {
         String fileName = "contact.csv";
+        List<String> data = new ArrayList<>();
+        data.add("Name,Email,Phone");
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName));
-            String line;
+            String name;
+            String email;
+            String phone;
             for (int i = 0; i < this.getChildren().size(); i++) {
                 if (this.getChildren().get(i) instanceof Contact) {
-                    line = ((Contact) this.getChildren().get(i)).getContactName().getText();
-                    bufferedWriter.write(line.toString());
-                    bufferedWriter.newLine();
+                    name = ((Contact) this.getChildren().get(i)).getContactName().getText();
+                    email = ((Contact) this.getChildren().get(i)).getContactEmail().getText();
+                    phone = ((Contact) this.getChildren().get(i)).getContactPhone().getText();
+                    data.add(name + "," + email + "," + phone);
                 }
+            }
+            for (String line : data) {
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
             }
             bufferedWriter.close();
         } catch (IOException e) {
@@ -162,6 +171,7 @@ class ContactList extends VBox {
         this.getChildren().removeIf(
                 contact -> contact instanceof Contact && ((Contact) contact).getContactName().equals(contactName));
     }
+
 }
 
 class Footer extends HBox {
@@ -181,10 +191,8 @@ class Footer extends HBox {
         addButton = new Button("New Contact"); // text displayed on add button
 
         exportButton = new Button("Export Contact"); // text displayed on add button
-        exportButton.setStyle(defaultButtonStyle); // styling the button
 
         sortButton = new Button("Sort Contact"); // text displayed on add button
-        sortButton.setStyle(defaultButtonStyle); // styling the button
 
         this.getChildren().add(addButton); // adding buttons to footer
         this.getChildren().add(exportButton);
@@ -254,7 +262,10 @@ class AppFrame extends BorderPane {
                 contact.uploadImage(null);
             });
         });
-
+        // Clear finished tasks
+        exportButton.setOnAction(e -> {
+            contactList.exportContact();
+        });
     }
 }
 
