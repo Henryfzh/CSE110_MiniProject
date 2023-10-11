@@ -41,6 +41,14 @@ class Contact extends HBox {
         uploadButton.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // sets style of button
         this.getChildren().add(uploadButton);
 
+        imageView = new ImageView();
+        imageView.setFitHeight(60);
+        imageView.setFitWidth(40);
+        VBox vbox = new VBox(imageView);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setPrefSize(40, 40);
+        this.getChildren().add(vbox);
+
         index = new Label();
         index.setText(""); // create index label
         index.setPrefSize(40, 20); // set size of Index label
@@ -49,11 +57,30 @@ class Contact extends HBox {
         this.getChildren().add(index); // add index label to task
 
         contactName = new TextField(); // create task name text field
-        contactName.setPrefSize(380, 50); // set size of text field
+        contactName.setPrefSize(200, 50); // set size of text field
         contactName.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // set background color of texfield
         index.setTextAlignment(TextAlignment.LEFT); // set alignment of text field
-        contactName.setPadding(new Insets(10, 0, 10, 0)); // adds some padding to the text field
+        contactName.setPadding(new Insets(20, 20, 20, 20)); // adds some padding to the text field
         this.getChildren().add(contactName); // add textlabel to task
+        contactName.setPromptText("Name");
+
+        contactEmail = new TextField(); // create task name text field
+        contactEmail.setPrefSize(200, 50); // set size of text field
+        contactEmail.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // set background color of
+                                                                                      // texfield
+        index.setTextAlignment(TextAlignment.LEFT); // set alignment of text field
+        contactEmail.setPadding(new Insets(20, 20, 20, 20)); // adds some padding to the text field
+        this.getChildren().add(contactEmail); // add textlabel to task
+        contactEmail.setPromptText("Email");
+
+        contactPhone = new TextField(); // create task name text field
+        contactPhone.setPrefSize(200, 50); // set size of text field
+        contactPhone.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0;"); // set background color of
+                                                                                      // texfield
+        index.setTextAlignment(TextAlignment.LEFT); // set alignment of text field
+        contactPhone.setPadding(new Insets(20, 20, 20, 20)); // adds some padding to the text field
+        this.getChildren().add(contactPhone); // add textlabel to task
+        contactPhone.setPromptText("Phone");
 
         delButton = new Button("Delete");
         delButton.setPrefSize(100, 20);
@@ -85,7 +112,6 @@ class Contact extends HBox {
     }
 
     public void uploadImage(Stage primaryStage) {
-        imageView = new ImageView();
         fileChooser = new FileChooser();
         // Select which extensions are allowed
         fileChooser.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
@@ -100,9 +126,6 @@ class Contact extends HBox {
              * pass the selected image as an argument.
              */
             imageView.setImage(image);
-            // Resize the window to fit the image
-            primaryStage.setWidth(image.getWidth() + 100);
-            primaryStage.setHeight(image.getHeight() + 100);
         }
     }
 }
@@ -223,18 +246,16 @@ class AppFrame extends BorderPane {
         addButton.setOnAction(e -> {
             Contact contact = new Contact();
             contactList.getChildren().add(contact);
+            uploadButton = contact.getUploadButton();
+            uploadButton.setOnAction(e1 -> {
+                contact.uploadImage(null);
+            });
         });
 
     }
 }
 
 public class Main extends Application {
-    // To display images
-    private ImageView imageView = new ImageView();
-
-    // To open a file dialog for selecting images
-    private FileChooser fileChooser = new FileChooser();
-    Button uploadButton;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -246,7 +267,7 @@ public class Main extends Application {
         // Set the title of the app
         primaryStage.setTitle("Contact List");
         // Create scene of mentioned size with the border pane
-        primaryStage.setScene(new Scene(root, 500, 600));
+        primaryStage.setScene(new Scene(root, 800, 1000));
         // Make window non-resizable
         primaryStage.setResizable(false);
         // Show the app
