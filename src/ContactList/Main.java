@@ -37,7 +37,6 @@ class Contact extends HBox {
         this.setPrefSize(500, 50); // sets size of task
         this.setStyle("-fx-background-color: #DAE5EA; -fx-border-width: 0; -fx-font-weight: bold;"); // sets background
                                                                                                      // color of task
-
         uploadButton = new Button("Upload \n Image"); // creates a button for marking the task as done
         uploadButton.setPrefSize(100, 40);
         uploadButton.setAlignment(Pos.CENTER);
@@ -132,6 +131,17 @@ class Contact extends HBox {
         }
     }
 }
+class SortByName implements Comparator<Contact> {
+ 
+    // Method
+    // Sorting in ascending order of roll number
+    public int compare(Contact a, Contact b)
+    {  
+        String name1 = a.getContactName().getText();       
+        String name2 = b.getContactName().getText();    
+        return name1.compareTo(name2);
+    }
+}
 
 class ContactList extends VBox {
     ContactList() {
@@ -169,7 +179,25 @@ class ContactList extends VBox {
 
     public void remove(String contactName) {
         this.getChildren().removeIf(
-                contact -> contact instanceof Contact && ((Contact) contact).getContactName().equals(contactName));
+                contact -> contact instanceof Contact && ((Contact) contact).getContactName().getText().equals(contactName));
+    }
+
+    public void removeAll(){
+        this.getChildren().removeIf(contact -> contact instanceof Contact);
+    }
+
+    public void sortByName(){
+        ArrayList<Contact> arr = new ArrayList<Contact>();
+        for (int i = 0; i < this.getChildren().size(); i++){
+            arr.add((Contact) this.getChildren().get(i));
+        }
+
+        Collections.sort(arr, new SortByName());
+        this.removeAll();
+
+        for (int i = 0; i < arr.size(); i++){
+            this.getChildren().add(arr.get(i));
+        }
     }
 
 }
@@ -223,6 +251,10 @@ class Header extends HBox {
         titleText.setStyle("-fx-font-weight: bold; -fx-font-size: 20;");
         this.getChildren().add(titleText);
         this.setAlignment(Pos.CENTER); // Align the text to the Center
+
+        Text credits = new Text("                                                   Designed by Henry Feng & Bran Zhang");
+        credits.setStyle("-fx-font-size: 10;");
+        this.getChildren().add(credits);
     }
 }
 
@@ -235,6 +267,8 @@ class AppFrame extends BorderPane {
     private Button addButton;
     private Button exportButton;
     private Button uploadButton;
+    private Button delButton;
+    private Button sortButton;
 
     AppFrame() {
         header = new Header();
@@ -250,6 +284,7 @@ class AppFrame extends BorderPane {
 
         addButton = footer.getAddButton();
         exportButton = footer.getExportButton();
+        sortButton = footer.getSortButton();
         addListeners();
     }
 
@@ -261,8 +296,15 @@ class AppFrame extends BorderPane {
             uploadButton.setOnAction(e1 -> {
                 contact.uploadImage(null);
             });
+            delButton = contact.getDelButton();
+            delButton.setOnAction(e1 -> {
+                contactList.remove(contact.getContactName().getText());
+            });
         });
-        // Clear finished tasks
+        sortButton.setOnAction(e -> {
+            contactList.sortByName();
+        });
+
         exportButton.setOnAction(e -> {
             contactList.exportContact();
         });
